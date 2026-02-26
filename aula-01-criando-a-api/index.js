@@ -6,33 +6,45 @@ const app = express(); // carrega em uma variável
 // importando o módulo
 import Game from "./models/Games.js"
 
+// importando routes
+import gameRoutes from './routes/gameRoutes.js';
+
+// ativando a utilização das rotas
+
+app.use("/", gameRoutes)
+
 // configurações do express
 app.use(express.json()) //  Permite o uso de JSON na aplicação
+
+// ativando a utilização das rotas
+
+app.use("/", gameRoutes)
+
 
 // Iniciando conexão com o banco de dados mongodb
 mongoose.connect("mongodb://127.0.0.1:27017/api-the-games")
 
 // criando rotas
-app.get("/", (req,res) => {
+// app.get("/", (req,res) => {
 
-    const games = [
-        {
-            title: "Game 1",
-            year: "2020",
-            platform: "PC",
-            price: 20
-        },
-        {
-            title: "Game 2",
-            year: "2024",
-            platform: "Xbox",
-            price: 30
-        },
-    ]
-    res.status(200).json(games)
+//     const games = [
+//         {
+//             title: "Game 1",
+//             year: "2020",
+//             platform: "PC",
+//             price: 20
+//         },
+//         {
+//             title: "Game 2",
+//             year: "2024",
+//             platform: "Xbox",
+//             price: 30
+//         },
+//     ]
+//     res.status(200).json(games)
 
     // res.status(200).json({"message" : "API rodando com sucesso!"}) // pra retornar um JSON na resposta
-});
+// });
 
 // rodando a API na porta 4000
 
