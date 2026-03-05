@@ -12,6 +12,11 @@ gameRoutes.get("/games", gameController.getAllGames)
 // endpoint para cadastrar um game
 gameRoutes.post("/games", gameController.createGame)
 
+// endpoint para excluir um game
+gameRoutes.delete("/games/:id", gameController.deleteGame)
+
+gameRoutes.put("/games/:id", gameController.updateGame)
+
 export default gameRoutes;
 
 // gravar hierarquia das camadas

@@ -35,6 +35,34 @@ class gameService{
             console.log(error)
         }
     }
+
+    // MÉTODO PARA EXCLUIR UM JOGO
+    async Delete(id){
+        try{
+            // excluindo o jogo pela ID
+            await Game.findByIdAndDelete(id)
+            console.log(`Game com a id: ${id} foi deletado.`)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    // método de alteração
+    async Update(id, title, platform, year, price){
+        try{
+            await Game.findByIdAndUpdate(id, {
+                title,
+                platform,
+                year,
+                price
+            })
+            console.log(`O jogo com a ${id} foi alterado`)
+        } catch(error){
+            console.log(error)
+        }
+    }
+
 }
 
 // quando voce quer exportar uma classe voce utiliza new
