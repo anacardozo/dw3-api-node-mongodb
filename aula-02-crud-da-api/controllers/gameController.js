@@ -60,8 +60,8 @@ const updateGame = async (req,res) => {
         const id = req.params.id
         if(ObjectId.isValid(id)){
             const {title, platform, year, price} = req.body
-            await gameService.Update(id, title, platform, year, price)
-            res.status(200).json({messsage: 'Jogo alterado com sucesso'})
+            const game = await gameService.Update(id, title, platform, year, price)
+            res.status(200).json({messsage: 'Jogo alterado com sucesso', game : game}) // game:game -> é para mostrar o json com as informações do jogo depois que aparecer a mensagem
         }
         else{
             res.status(400).json({error: 'Ocorreu um erro na validação da ID'})
@@ -72,5 +72,26 @@ const updateGame = async (req,res) => {
     }
 }
 
+const getOneGame = async (req,res) => {
+    try{
+        const id = req.params.id
+        if(ObjectId.isValid(id)){
+            const game = await gameService.getOne(id)
+            // verificando se o jogo foi encontrado
+            if (!game) { //se o jogo não existir (!= NOT (falso))
+                res.status(404).json({error: 'O jogo buscado não foi encontrado'})
+            } else{
+                res.status(200).json({game})
+            }
+        }else{ //se a ID for inválida
+            res.status(400).json({error: 'A ID informada é inválida'})
+        }
+
+    }catch(error){
+        console.log(error)
+        res.status(500).json({errror: 'Erro interno do servidor. Não foi possível listar o jogo.'})
+    }
+}
+
 // exportando a função
-export default {getAllGames, createGame, deleteGame, updateGame}
+export default {getAllGames, createGame, deleteGame, updateGame, getOneGame}

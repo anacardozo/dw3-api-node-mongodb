@@ -51,14 +51,29 @@ class gameService{
     // método de alteração
     async Update(id, title, platform, year, price){
         try{
-            await Game.findByIdAndUpdate(id, {
+            const updatedGame = await Game.findByIdAndUpdate(id, { // grava o objeto nessa variavel updatedGame
                 title,
                 platform,
                 year,
                 price
-            })
+            },
+                { new: true} //é tipo um select, retorna o jogo que foi alterado
+                // o método ja entende que ele tem que alterar e depois retorna o jogo com as informações alteradas
+        )
             console.log(`O jogo com a ${id} foi alterado`)
+            return updatedGame
+
         } catch(error){
+            console.log(error)
+        }
+    }
+
+    // Método para listar um jogo único
+    async getOne(id) {
+        try{
+            const game = await Game.findOne({_id: id}) // o primeiro id é o que vem do mongo _id -> pela criação automática
+            return game
+        }catch(error){
             console.log(error)
         }
     }
