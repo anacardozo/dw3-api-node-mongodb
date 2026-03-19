@@ -16,6 +16,15 @@ class userService{
             console.log(error)
         }
     }
+    // método para buscar um usuario
+    async getOne(email){
+        try{
+            const user = await User.findOne({email:email})
+            return user
+        } catch(error){
+            console.log(error)
+        }
+    }
 }
 
 // quando exporta classe usa a palavra new e tem que usar o () no final

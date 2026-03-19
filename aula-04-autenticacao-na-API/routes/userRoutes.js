@@ -7,6 +7,7 @@ const userRoutes = express.Router()
 
 // Endpoint para cadastrar um usuário
 userRoutes.post("/users", userController.createUser)
+userRoutes.post("/auth", userController.loginUser)
 
 
 export default userRoutes
