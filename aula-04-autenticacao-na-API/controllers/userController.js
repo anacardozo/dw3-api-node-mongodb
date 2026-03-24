@@ -45,13 +45,14 @@ const loginUser = async (req,res) => {
                             }
                         })
                 }else{
-                    res.status(500).json({error: 'Senha incorreta'})
+                    res.status(401).json({error: 'Suas credenciais são inválidas. Acesso negado. Tente novamente'})
+                    // Cod.401 (UNAUTHORIZED) - NÃO ENCONTRADO
                 }
             }else{
-                    res.status(500).json({error: 'Usuario não encontrado'})
+                    res.status(404).json({error: 'Usuario informado não foi encontrado'})
                 }
         }else{
-                    res.status(500).json({error: 'Email invalido'})
+                    res.status(404).json({error: 'Email invalido ou não informado'})
                 }
 
     }catch(error){
