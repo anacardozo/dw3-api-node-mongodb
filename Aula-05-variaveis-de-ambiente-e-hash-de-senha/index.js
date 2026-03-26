@@ -15,11 +15,17 @@ import gameRoutes from './routes/gameRoutes.js';
 // importando rotas do usuario
 import userRoutes from './routes/userRoutes.js';
 
+// importando o cors
+import cors from 'cors'
+
 // ativando a utilização das rotas
 
 
 // configurações do express
 app.use(express.json()) //  Permite o uso de JSON na aplicação
+
+// configurando o cors()
+app.use(cors())
 
 // ativando a utilização das rotas
 
